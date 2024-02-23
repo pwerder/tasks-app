@@ -1,12 +1,12 @@
-version: '3.8'
+version: '3'
 
 services:
   mysql:
-    image: mysql:latest
+    image: mysql:8.0
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: tasks
+      MYSQL_DATABASE: dbtasks
       MYSQL_USER: admin
       MYSQL_PASSWORD: 123456
     ports:
