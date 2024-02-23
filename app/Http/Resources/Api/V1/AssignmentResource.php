@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Http\Resources\Api\V1;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class AssignmentResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+            'number_card' => $this->id,
+            'user' => [
+                'userName' => $this->user->name,
+            ],
+            'task' => [
+                'title' => $this->task->title,
+                'description' => $this->task->description,
+                'status' => $this->task->status,
+            ]
+        ];
+    }
+}
