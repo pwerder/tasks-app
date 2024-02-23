@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\AssignmentsController;
 use App\Http\Controllers\Api\V1\TasksCotroller;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Http\Request;
@@ -23,4 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('v1')->group(function () {
     Route::apiResource('tasks', TasksCotroller::class);
     Route::apiResource('users', UserController::class);
+    Route::apiResource('assigned', AssignmentsController::class);
 });
