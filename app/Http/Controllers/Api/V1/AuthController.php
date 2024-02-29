@@ -14,8 +14,21 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         if (Auth::attempt($request->only("email","password"))) {
+
+            if (auth()->user()->occupation === "employee") {
+                return $this->response(200, "Authorized", [
+                    auth()->user()->createToken("assignments", ['tasks.employee'])->plainTextToken
+                ]);
+            }
+
+            if (auth()->user()->occupation === 'manager') {
+                return $this->response(200, "Authorized", [
+                    auth()->user()->createToken("assignments", ['tasks.manager'])->plainTextToken
+                ]);
+            }
+
             return $this->response(200, "Authorized", [
-                auth()->user()->createToken("assignments")->plainTextToken
+                auth()->user()->createToken("assignments", ['tasks:other'])->plainTextToken
             ]);
         }
 
